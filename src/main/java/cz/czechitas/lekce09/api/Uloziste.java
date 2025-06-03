@@ -35,6 +35,16 @@ public class Uloziste {
         // Načíst objekt UlozenyStav pomocí objectMapper.readValue(file, UlozenyStav.class)
         // Získat z UlozenyStav souřadnice kočky a myši
         // Zapsat tyto souřadnice do objektů kočky a myši pomocí setLocation()
+
+        UlozenyStav stav = objectMapper.readValue(path.toFile(), UlozenyStav.class);
+
+        cat.setLocation(stav.getCat().getLocation());
+        mouse.setLocation(stav.getMouse().getLocation());
+
+        System.out.println("Stav hry načten");
+        System.out.println(" kočka: " + stav.getCat().getLocation());
+        System.out.println("   Myš:   " + stav.getMouse());
+
     }
 
     public void nacistStavZeSouboru() throws IOException {
@@ -46,6 +56,18 @@ public class Uloziste {
         // Vytvořit objekt UlozenyStav
         // Uložit do něj souřadnice kočky a myši – souřadnice získáte voláním getLocation()
         // Uložit objekt UlozenyStav do souboru pomocí objectMapper.writeValue(file, object)
+
+        UlozenyStav stav = new UlozenyStav();
+        stav.setCat(cat.getLocation());
+        stav.setMouse(mouse.getLocation());
+
+        objectMapper.writeValue(path.toFile(), stav);
+
+        System.out.println("Stav hry uložen");
+        System.out.println(" kočka: " + stav.getCat().getLocation());
+
+
+
     }
 
     public void ulozitStavDoSouboru() throws IOException {

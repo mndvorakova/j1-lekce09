@@ -20,3 +20,4 @@ dependencies {
 application {
     mainClass = "cz.czechitas.lekce09.HlavniProgram"
 }
+
